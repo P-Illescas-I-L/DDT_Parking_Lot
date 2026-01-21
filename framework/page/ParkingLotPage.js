@@ -1,5 +1,4 @@
 import BasePage from "./BasePage";
-import chai from 'chai';
 
 import{Button, Input, Dropdown, Label} from '../elements/BaseElement';
 import {PreciseLocatorText} from '../../framework/utils/locatorHelper';
@@ -42,3 +41,4 @@ class PLMain extends BasePage{
     }
 
 }
+export default new PLMain()

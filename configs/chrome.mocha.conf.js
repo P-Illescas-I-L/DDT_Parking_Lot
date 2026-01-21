@@ -5,7 +5,7 @@ export const config = {
     ...mainConfig,
     ...{
         specs: [
-            '../test/specs/**/*.js'
+            '../tests/specs/*.js'
         ],
         capabilities: [
             {

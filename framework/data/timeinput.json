@@ -1,0 +1,195 @@
+{
+    "valet": [
+        {
+            "name": "30 minutos",
+            "time": "00:30",
+            "expected": 12
+        },
+        {
+            "name": "5 horas",
+            "time": "05:00",
+            "expected": 12
+        },
+        {
+            "name": "5h 1min",
+            "time": "05:01",
+            "expected": 18
+        },
+        {
+            "name": "23h 59m",
+            "time": "23:59",
+            "expected": 18
+        },
+        {
+            "name": "24h",
+            "time": "24:00",
+            "expected": 18
+        },
+        {
+            "name": "24h 1min",
+            "time": "24:01",
+            "expected": 36
+        },
+        {
+            "name": "48h",
+            "time": "48:00",
+            "expected": 36
+        },
+        {
+            "name": "48h 1min",
+            "time": "48:01",
+            "expected": 54
+        }
+    ],
+    "short_term": [
+        {
+            "name": "30 min",
+            "time": "00:30",
+            "expected": 2
+        },
+        {
+            "name": "1h",
+            "time": "01:00",
+            "expected": 2
+        },
+        {
+            "name": "1h1m",
+            "time": "01:01",
+            "expected": 3
+        },
+        {
+            "name": "2h",
+            "time": "02:00",
+            "expected": 4
+        },
+        {
+            "name": "11h (máx)",
+            "time": "11:00",
+            "expected": 24
+        },
+        {
+            "name": "24h",
+            "time": "24:00",
+            "expected": 24
+        },
+        {
+            "name": "24h 1m",
+            "time": "24:01",
+            "expected": 26
+        }    
+    ],
+    "long_term_garage": [
+        {
+            "name": "30m",
+            "time": "00:30",
+            "expected": 2
+        },
+        {
+            "name": "6h",
+            "time": "06:00",
+            "expected": 12
+        },
+        {
+            "name": "24h",
+            "time": "24:00",
+            "expected": 12
+        },
+        {
+            "name": "24h 1m",
+            "time": "24:01",
+            "expected": 24
+        },
+        {
+            "name": "6 días",
+            "days": 6,
+            "expected": 72
+        },
+        {
+            "name": "7 días",
+            "days": 7,
+            "expected": 72
+        },
+        {
+            "name": "7 días 1m",
+            "days": 7,
+            "extra_minutes": 1,
+            "expected": 84
+        }
+    ],
+    "long_term_surface": [
+        {
+            "name": "30m",
+            "time": "00:30",
+            "expected": 2
+        },
+        {
+            "name": "8h",
+            "time": "08:00",
+            "expected": 10
+        },
+        {
+            "name": "24h",
+            "time": "24:00",
+            "expected": 10
+        },
+        {
+            "name": "24h 1m",
+            "time": "24:01",
+            "expected": 20
+        },
+        {
+            "name": "6 días",
+            "days": 6,
+            "expected": 60
+        },
+        {
+            "name": "7 días",
+            "days": 7,
+            "expected": 60
+        },
+        {
+            "name": "7 días 1m",
+            "days": 7,
+            "extra_minutes": 1,
+            "expected": 70
+        }
+    ],
+    "economy": [
+        {
+            "name": "30m",
+            "time": "00:30",
+            "expected": 2
+        },
+        {
+            "name": "5h",
+            "time": "05:00",
+            "expected": 9
+        },
+        {
+            "name": "24h",
+            "time": "24:00",
+            "expected": 9
+        },
+        {
+            "name": "24h 1m",
+            "time": "24:01",
+            "expected": 18
+        },
+        {
+            "name": "6 días",
+            "days": 6,
+            "expected": 54
+        },
+        {
+            "name": "7 días",
+            "days": 7,
+            "expected": 54
+        },
+        {
+            "name": "7 días 1m",
+            "days": 7,
+            "extra_minutes": 1,
+            "expected": 63
+        }
+    ]
+}
