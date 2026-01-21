@@ -1,0 +1,100 @@
+Matriz de Casos de Prueba — Tarifas de Estacionamiento
+Generado: 2026-01-20 21:33:14
+Autor: M365 Copilot
+
+==============================================
+1) Valet Parking
+==============================================
+Reglas:
+- $12 por cinco horas o menos
+- $18 por día (>5h y hasta 24h). Cualquier fracción que exceda 24h inicia un nuevo día completo
+
+Casos:
+ 1) 00:30  -> Regla: ≤5h                         -> Esperado: $12
+ 2) 05:00  -> Regla: ≤5h                         -> Esperado: $12
+ 3) 05:01  -> Regla: >5h y ≤24h                  -> Esperado: $18
+ 4) 23:59  -> Regla: ≤24h                        -> Esperado: $18
+ 5) 24:00  -> Regla: Día completo                -> Esperado: $18
+ 6) 24:01  -> Regla: >24h -> nuevo día           -> Esperado: $36
+ 7) 48:00  -> Regla: 2 días                      -> Esperado: $36
+ 8) 48:01  -> Regla: 3 días                      -> Esperado: $54
+
+==============================================
+2) Short-Term (Hourly) Parking
+==============================================
+Reglas:
+- $2.00 primera hora
+- $1.00 por cada 30 minutos adicionales (redondeo a la media hora superior)
+- $24.00 máximo diario
+
+Casos:
+ 1) 00:30  -> $2 mínima 1h                       -> Esperado: $2
+ 2) 01:00  -> $2                                 -> Esperado: $2
+ 3) 01:01  -> $2 + $1                            -> Esperado: $3
+ 4) 02:00  -> $2 + 2x$1                          -> Esperado: $4
+ 5) 11:00  -> Cálculo excede $24 -> Máx diario   -> Esperado: $24
+ 6) 24:00  -> Máx diario                         -> Esperado: $24
+ 7) 24:01  -> Nuevo día: $24 + (0:01 -> $2)      -> Esperado: $26
+ 8) Ticket perdido en día tope -> $24 + $10      -> Esperado: $34
+
+==============================================
+3) Long-Term Garage Parking
+==============================================
+Reglas:
+- $2.00 por hora (redondeo a la hora superior)
+- $12.00 máximo diario
+- $72.00 por semana (7º día gratis)
+
+Casos:
+ 1) 00:30  -> $2                                 -> Esperado: $2
+ 2) 06:00  -> 6h * $2 = $12 -> Máx diario        -> Esperado: $12
+ 3) 24:00  -> Máx diario                         -> Esperado: $12
+ 4) 24:01  -> 2 días                              -> Esperado: $24
+ 5) 6 días -> 6 * $12                             -> Esperado: $72
+ 6) 7 días -> 7º día gratis                      -> Esperado: $72
+ 7) 7 días 00:01 -> Semana + 1 día               -> Esperado: $84
+ 8) Ticket perdido con día lleno -> $12 + $10    -> Esperado: $22
+
+==============================================
+4) Long-Term Surface Parking (North Lot)
+==============================================
+Reglas:
+- $2.00 por hora (redondeo a la hora superior)
+- $10.00 máximo diario
+- $60.00 por semana (7º día gratis)
+
+Casos:
+ 1) 00:30  -> $2                                 -> Esperado: $2
+ 2) 08:00  -> Cálculo > $10 -> Máx diario        -> Esperado: $10
+ 3) 24:00  -> Máx diario                         -> Esperado: $10
+ 4) 24:01  -> 2 días                              -> Esperado: $20
+ 5) 6 días -> 6 * $10                             -> Esperado: $60
+ 6) 7 días -> 7º día gratis                      -> Esperado: $60
+ 7) 7 días 00:01 -> $60 + $10                    -> Esperado: $70
+ 8) Ticket perdido con día lleno -> $10 + $10    -> Esperado: $20
+
+==============================================
+5) Economy Lot Parking
+==============================================
+Reglas:
+- $2.00 por hora (redondeo a la hora superior)
+- $9.00 máximo diario
+- $54.00 por semana (7º día gratis)
+
+Casos:
+ 1) 00:30  -> $2                                 -> Esperado: $2
+ 2) 05:00  -> 5h * $2 = $10 -> Máx diario $9     -> Esperado: $9
+ 3) 24:00  -> Máx diario                         -> Esperado: $9
+ 4) 24:01  -> 2 días                              -> Esperado: $18
+ 5) 6 días -> 6 * $9                              -> Esperado: $54
+ 6) 7 días -> 7º día gratis                      -> Esperado: $54
+ 7) 7 días 00:01 -> $54 + $9                     -> Esperado: $63
+ 8) Ticket perdido con día lleno -> $9 + $10     -> Esperado: $19
+
+==============================================
+6) Lost Ticket Fee (No aplica a Valet)
+==============================================
+Casos generales:
+ - Short-Term 2h + ticket perdido: $4 + $10 = $14
+ - Long-Term Garage 1 día + perdido: $12 + $10 = $22
+ - Economy 5h (tope $9) + perdido: $9 + $10 = $19
