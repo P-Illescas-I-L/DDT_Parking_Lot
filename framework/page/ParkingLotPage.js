@@ -1,11 +1,10 @@
-import BasePage from "./BasePage";
-
-import{Button, Input, Dropdown, Label} from '../elements/BaseElement';
-import {PreciseLocatorText} from '../../framework/utils/locatorHelper';
+import BasePage from "./BasePage.js";
+import Browser from "../browser/Browser.js";
+import{Button, Input, Dropdown, Label} from '../elements/index.js';
 
 class PLMain extends BasePage{
     constructor(){
-        super(new Label(PreciseLocatorText('PARKING COST CALCULATOR')) , 'Parking Cost main Page');
+        super(new Label('p.PageTitle') , 'Parking Cost main Page');
 
         this.CalculateButton = new Button('input[type="submit"]', 'Calculate Button');
         this.ParkingValue = new Dropdown('#ParkingLot', 'Parking Lot Dropdown');
@@ -17,7 +16,8 @@ class PLMain extends BasePage{
     }
 
     async parkingType(value){
-        await this.ParkingValue.selectOptionByValue(value);
+        await this.ParkingValue.click();
+        await this.ParkingValue.selectOptionByValue(value); // resultado: null
     }
 
     async typeInDate(date){
@@ -36,9 +36,13 @@ class PLMain extends BasePage{
         await this.outHours.typeText(time);   
     }
 
+    async clickCalculateButton(){
+        await this.CalculateButton.click();
+    }
+
     async getTariff(){
         return this.tariff.state().isDisplayed();
     }
 
 }
-export default new PLMain()
+export default new PLMain();
