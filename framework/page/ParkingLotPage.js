@@ -1,5 +1,4 @@
 import BasePage from "./BasePage.js";
-import Browser from "../browser/Browser.js";
 import{Button, Input, Dropdown, Label} from '../elements/index.js';
 
 class PLMain extends BasePage{
@@ -12,28 +11,33 @@ class PLMain extends BasePage{
         this.outDate = new Input('#LeavingDate','Leaving Input Date');
         this.inHours = new Input('#StartingTime','Entry Input Hour');
         this.outHours = new Input('#LeavingTime','Leaving Input Hour');
-        this.tariff = new Label('.SubHead','Tariff Label');
+        this.tariff = new Label('span.SubHead','Tariff Label');
     }
 
     async parkingType(value){
         await this.ParkingValue.click();
+        await this.ParkingValue.state().waitForDisplayed();
         await this.ParkingValue.selectOptionByValue(value); // resultado: null
     }
 
     async typeInDate(date){
-        await this.inDate.typeText(date);   
+        await this.inDate.click();
+        await this.inDate.typeTextWithClear(date);
     }
 
     async typeOutDate(date){
-        await this.outDate.typeText(date);   
+        await this.outDate.click();   
+        await this.outDate.typeTextWithClear(date);   
     }
 
     async typeInHour(time){
-        await this.inHours.typeText(time);   
+        await this.inHours.click();   
+        await this.inHours.typeTextWithClear(time);   
     }
 
     async typeOutHour(time){
-        await this.outHours.typeText(time);   
+        await this.outHours.click();   
+        await this.outHours.typeTextWithClear(time);   
     }
 
     async clickCalculateButton(){
@@ -41,7 +45,7 @@ class PLMain extends BasePage{
     }
 
     async getTariff(){
-        return this.tariff.state().isDisplayed();
+        return this.tariff.getText();
     }
 
 }
